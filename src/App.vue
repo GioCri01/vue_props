@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+   <CardComp
+   v-for="(slideItem,index) in sliderImages" :key="`slide-${index}`"
+   :slide="slideItem"
+   
+   />
+   <CardDueComp
+   v-for="(slideItem,index) in sliderImages" :key="`slideDue-${index}`"
+   :cardimage="slideItem.image"
+   :cardtitle="slideItem.title"
+   :carddescription="slideItem.text"
+   
+   />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import sliderImages from './assets/data/sliderImages'
+import CardComp from './components/CardComp.vue'
+import CardDueComp from './components/CardDueComp.vue'
 export default {
+ 
   name: 'App',
   components: {
-    HelloWorld
+    CardComp,
+    CardDueComp,
+},
+  data(){
+    return{
+      sliderImages
+    }
+  },
+  mounted(){
+    console.log(this.sliderImages);
   }
+  
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
